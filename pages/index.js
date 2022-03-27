@@ -1,63 +1,73 @@
 import Head from 'next/head'
+import DataTableX from '../src/components/dataTable'
+import Button from '@mui/material/Button'
+
+const tableDataItems = [
+  {
+      id: 1,
+      name: 'Beetlejuice',
+      description: '1988',
+      date: '26.03.2022',
+      messageType: 'TELEGRAM'
+
+  },
+  {
+      id: 2,
+      name: 'Ghostbusters',
+      description: '1984',
+      date: 'aaa',
+      messageType: 'TELEGRAM'
+  }
+]
+
+const getBotUpdates = () =>
+  fetch(
+    `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}/getUpdates`
+  ).then((response) => response.json());
+
+const getUserTelegramId = async (uniqueString) => {
+  const { result } = await getBotUpdates();
+  console.log(result);
+  const messageUpdates = result.filter(
+    ({ message }) => message?.text !== undefined
+  );
+
+  const userUpdate = messageUpdates.find(
+    ({ message }) => message.text === `/start`
+  );
+  console.log(userUpdate);
+    console.log(userUpdate.message.from.id);
+  return userUpdate.message.from.id;
+};
+
+const sendRememberMessageToBot = () => {
+ fetch(
+   `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}&text=Hello%20from%20your%20new%20bot`
+ ).then((response) => response.json());
+};
 
 export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Create Next App</title>
+        <name>Alert Service</name>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className="title">
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        <h1 className="name">
+        Remember me service
         </h1>
-
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        <DataTableX tableDataItems={tableDataItems} />
+        <Button key="delete" onClick={sendRememberMessageToBot} style={{ backgroundColor: 'White' }}>
+                SyncData
+        </Button>
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className="logo" />
-        </a>
+        <p>ddd</p>
       </footer>
+        
 
       <style jsx>{`
         .container {
