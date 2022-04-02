@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import DataTableX from '../src/components/dataTable'
 import Button from '@mui/material/Button'
 
@@ -20,30 +21,10 @@ const tableDataItems = [
   }
 ]
 
-const getBotUpdates = () =>
-  fetch(
-    `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}/getUpdates`
-  ).then((response) => response.json());
-
-const getUserTelegramId = async (uniqueString) => {
-  const { result } = await getBotUpdates();
-  console.log(result);
-  const messageUpdates = result.filter(
-    ({ message }) => message?.text !== undefined
-  );
-
-  const userUpdate = messageUpdates.find(
-    ({ message }) => message.text === `/start`
-  );
-  console.log(userUpdate);
-    console.log(userUpdate.message.from.id);
-  return userUpdate.message.from.id;
-};
-
 const sendRememberMessageToBot = () => {
  fetch(
-   `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}&text=Hello%20from%20your%20new%20bot`
- ).then((response) => response.json());
+   `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=584840017&text=Hello%20from%20your%20new%20bot`
+ ).then((response) => response.json()); 
 };
 
 export default function Home() {
@@ -59,8 +40,13 @@ export default function Home() {
         Remember me service
         </h1>
         <DataTableX tableDataItems={tableDataItems} />
-        <Button key="delete" onClick={sendRememberMessageToBot} style={{ backgroundColor: 'White' }}>
-                SyncData
+        <Button key="delete" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'White' }}>
+          SyncData
+        </Button>
+        <Button key="addUser" style={{ backgroundColor: 'White' }}>
+          <Link href="/user">
+            <a>Add user</a>
+          </Link>
         </Button>
       </main>
 
