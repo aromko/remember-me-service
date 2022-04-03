@@ -19,11 +19,11 @@ const getUserTelegramId = async (uniqueString) => {
 };
 
 export default async function handler(req, res) {
-    const chatId = await getUserTelegramId(req.body.name);
+    const telegramId = await getUserTelegramId(req.body.name);
     
-    if (typeof chatId === 'number'){
-        res.status(200).json({status: 200, chatId: chatId, errorMessage: ''});
+    if (typeof telegramId === 'number'){
+        res.status(200).json({telegramId: telegramId, errorMessage: ''});
     } else {
-        res.status(500).json({status: 200, chatId: chatId, errorMessage: 'no user found'});
+        res.status(500).json({telegramId: telegramId, errorMessage: 'No user was found. Please add the bot via Telegram App and try again'});
     }    
 }

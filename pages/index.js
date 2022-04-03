@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import DataTableX from '../src/components/dataTable'
 import Button from '@mui/material/Button'
 
@@ -28,6 +29,9 @@ const sendRememberMessageToBot = () => {
 };
 
 export default function Home() {
+  const router = useRouter()
+  let message = router.query.message ?? '';
+  console.log(message);
   return (
     <div className="container">
       <Head>
@@ -40,11 +44,12 @@ export default function Home() {
         Remember me service
         </h1>
         <DataTableX tableDataItems={tableDataItems} />
+        {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null }
         <Button key="delete" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'White' }}>
           SyncData
         </Button>
         <Button key="addUser" style={{ backgroundColor: 'White' }}>
-          <Link href="/user">
+          <Link href="/userPage">
             <a>Add user</a>
           </Link>
         </Button>
