@@ -4,24 +4,6 @@ import { useRouter } from 'next/router'
 import DataTableX from '../src/components/dataTable'
 import Button from '@mui/material/Button'
 
-const tableDataItems = [
-  {
-      id: 1,
-      name: 'Beetlejuice',
-      description: '1988',
-      date: '26.03.2022',
-      messageType: 'TELEGRAM'
-
-  },
-  {
-      id: 2,
-      name: 'Ghostbusters',
-      description: '1984',
-      date: 'aaa',
-      messageType: 'TELEGRAM'
-  }
-]
-
 const sendRememberMessageToBot = () => {
  fetch(
    `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=584840017&text=Hello%20from%20your%20new%20bot`
@@ -43,17 +25,20 @@ export default function Home() {
         <h1 className="name">
         Remember me service
         </h1>
-        <DataTableX tableDataItems={tableDataItems} />
-        {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null }
-        <Button key="delete" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'White' }}>
-          SyncData
-        </Button>
+        <DataTableX />
+        {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null }        
+      </main>
+
+      <buttons>
         <Button key="addUser" style={{ backgroundColor: 'White' }}>
           <Link href="/userPage">
             <a>Add user</a>
           </Link>
         </Button>
-      </main>
+        <Button key="delete" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'White' }}>
+          SyncData
+        </Button>
+      </buttons>
 
       <footer>
         <p>ddd</p>
@@ -62,6 +47,7 @@ export default function Home() {
 
       <style jsx>{`
         .container {
+          border: 2px solid red;
           min-height: 100vh;
           padding: 0 0.5rem;
           display: flex;
@@ -71,15 +57,27 @@ export default function Home() {
         }
 
         main {
-          padding: 5rem 0;
+          border: 2px solid green;
           flex: 1;
+          width: 100%;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
         }
 
+        buttons {
+          border: 2px solid pink;
+          flex: 1;
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+        }
+
         footer {
+          border: 2px solid yellow;
           width: 100%;
           height: 100px;
           border-top: 1px solid #eaeaea;

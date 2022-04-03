@@ -12,16 +12,40 @@ const columns = [
         selector: row => row.description,
     },
     {
-        name: 'Datum',
+        name: 'Ausführungdatum',
         selector: row => row.date
     },
     {
-      name: 'Nachrichtenart',
-      selector: row => row.messageType
+        name: 'Nachrichtenart',
+        selector: row => row.messageType
+    },
+    {
+        name: 'Benutzer',
+        selector: row => row.user
     }
 ];
 
-export default function DataTableX({tableDataItems}) {
+const tableDataItems = [
+    {
+        id: 1,
+        name: 'Beetlejuice',
+        description: '1988',
+        date: '26.03.2022',
+        messageType: 'TELEGRAM',
+        user: 'sabutori'
+  
+    },
+    {
+        id: 2,
+        name: 'Ghostbusters',
+        description: '1984',
+        date: 'aaa',
+        messageType: 'TELEGRAM',
+        user: 'sabutori'
+    }
+  ]
+
+export default function DataTableX() {
     const [selectedRows, setSelectedRows] = React.useState([]);
     const [toggleCleared, setToggleCleared] = React.useState(false);
     const [data, setData] = React.useState(tableDataItems);
@@ -45,11 +69,8 @@ export default function DataTableX({tableDataItems}) {
 
         return (
             <div>
-            <Button key="delete" onClick={handleDelete} style={{ backgroundColor: 'red' }}>
+            <Button key="delete" onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>
                 Delete
-            </Button>
-            <Button key="insert" onClick={handleDelete} style={{ backgroundColor: 'green' }}>
-                Insert
             </Button>
             </div>
         );
@@ -57,7 +78,7 @@ export default function DataTableX({tableDataItems}) {
 
     return (
         <DataTable
-            title="Desserts"
+            title="Tasks"
             columns={columns}
             data={data}
             selectableRows
