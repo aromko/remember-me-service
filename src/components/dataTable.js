@@ -1,5 +1,5 @@
 import DataTable from 'react-data-table-component';
-import React from 'react'
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Button from '@mui/material/Button'
 
 const columns = [
@@ -8,79 +8,71 @@ const columns = [
         selector: row => row.name,
     },
     {
-        name: 'Beschreibung',
+        name: 'Description',
         selector: row => row.description,
     },
     {
-        name: 'Ausführungdatum',
-        selector: row => row.date
+        name: 'Execution Data',
+        selector: row => row.executionAt
     },
     {
-        name: 'Nachrichtenart',
+        name: 'Message type',
         selector: row => row.messageType
     },
     {
-        name: 'Benutzer',
-        selector: row => row.user
+        name: 'User',
+        selector: row => row.userName
+    },
+    {
+        name: 'Telegram-Id',
+        selector: row => row.telegramId
     }
 ];
 
-const tableDataItems = [
-    {
-        id: 1,
-        name: 'Beetlejuice',
-        description: '1988',
-        date: '26.03.2022',
-        messageType: 'TELEGRAM',
-        user: 'sabutori'
-  
-    },
-    {
-        id: 2,
-        name: 'Ghostbusters',
-        description: '1984',
-        date: 'aaa',
-        messageType: 'TELEGRAM',
-        user: 'sabutori'
-    }
-  ]
-
 export default function DataTableX() {
-    const [selectedRows, setSelectedRows] = React.useState([]);
-    const [toggleCleared, setToggleCleared] = React.useState(false);
-    const [data, setData] = React.useState(tableDataItems);
+    const [reminders, setReminders] = useState([]);
+    const [selectedRows, setSelectedRows] = useState([]);
+    const [toggleCleared, setToggleCleared] = useState(false);
 
-    const handleRowSelected = React.useCallback(state => {
+    useEffect(() => {
+        fetch('api/reminder')
+        .then((res) => res.json())
+        .then((res) => {
+            setReminders(res.data);
+        })
+    }, [])
+
+    const handleRowSelected = useCallback(state => {
         setSelectedRows(state.selectedRows);
     }, []);
 
-    const contextActions = React.useMemo(() => {
+    const contextActions = useMemo(() => {
         const handleDelete = () => {
             
             if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.name)}?`)) {
                 setToggleCleared(!toggleCleared);
-                setData(differenceBy(data, selectedRows));
+                setReminders(differenceBy(reminders, selectedRows));
             }
         };
 
-        const differenceBy = (data, selectableRows) => {
-            return data.filter(x => !selectableRows.includes(x));
+        const differenceBy = (reminders, selectableRows) => {
+            return reminders.filter(x => !selectableRows.includes(x));
         };
 
         return (
             <div>
-            <Button key="delete" onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>
-                Delete
-            </Button>
+                <Button key="delete" onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>
+                    Delete
+                </Button>
             </div>
         );
-    }, [data, selectedRows, toggleCleared]);
+    }, [reminders, selectedRows, toggleCleared]);
 
     return (
         <DataTable
-            title="Tasks"
+            title="Reminders"
             columns={columns}
-            data={data}
+            data={reminders}
             selectableRows
 			contextActions={contextActions}
 			onSelectedRowsChange={handleRowSelected}
