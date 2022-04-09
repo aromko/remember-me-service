@@ -53,7 +53,7 @@ export default function Reminder() {
                 </div>
                 <div>
                     <label htmlFor="name">Ausführungdatum</label>
-                    <input id="executionAt" name="executionAt" type="text" autoComplete="name" required onChange={resetStatus}/>
+                    <input id="executionAt" name="executionAt" type="date" autoComplete="name" required onChange={resetStatus}/>
                 </div>
                 <div>
                     <label htmlFor="name">Nachrichtenart</label>
