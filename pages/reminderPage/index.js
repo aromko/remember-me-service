@@ -11,7 +11,7 @@ export default function Reminder() {
         .then((res) => {
             setUsers(res.data);
         })
-      }, [])
+    }, [])
 
     const router = useRouter();
     const [response, setResponse] = useState(initialState);
@@ -28,6 +28,7 @@ export default function Reminder() {
                 description: event.target.description.value,
                 executionAt: event.target.executionAt.value,
                 messageType: event.target.messageType[event.target.messageType.selectedIndex].value,
+                userName: event.target.telegramId[event.target.telegramId.selectedIndex].text,
                 telegramId: event.target.telegramId[event.target.telegramId.selectedIndex].value,
             })
         });
