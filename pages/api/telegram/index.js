@@ -24,6 +24,6 @@ export default async function handler(req, res) {
     if (typeof telegramId === 'number'){
         res.status(200).json({telegramId: telegramId, errorMessage: ''});
     } else {
-        res.status(500).json({telegramId: telegramId, errorMessage: 'No user was found. Please add the bot via Telegram App and try again'});
+        res.status(500).json({telegramId: telegramId, errorMessage: 'No user was found. Please add the Telegram Bot (react_remember_me_service_bot) via Telegram App and try again.'});
     }    
 }

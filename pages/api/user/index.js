@@ -7,15 +7,15 @@ export default async function handler(req, res) {
         case "POST":
             let bodyObject = JSON.parse(req.body);
             try {
-                let newUser = await db.collection("User").insertOne(bodyObject);
+                await db.collection("User").insertOne(bodyObject);
                 res.json({errorMessage: ''});
             } catch (e) {
                 res.json({errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.code}`});
             }
             break;
         case "GET":
-            const posts = await db.collection("posts").find({}).toArray();
-            res.json({ status: 200, data: posts });
+            const users = await db.collection("User").find({}).toArray();
+            res.json({ status: 200, data: users });
             break;
     }
 }

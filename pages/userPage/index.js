@@ -3,17 +3,16 @@ import React, { useState } from 'react';
 
 export default function User() {
     const initialState = {telegramId: 0, errorMessage: ''};
-
     const router = useRouter();
     const [response, setResponse] = useState(initialState);
     const resetStatus = () => {
         setResponse(initialState);
     }
 
-    const registerUser = async event => {
+    const registerUser = event => {
         event.preventDefault()
 
-        let result = await fetch('/api/telegram', {
+        fetch('/api/telegram', {
             body: JSON.stringify({
                 name: event.target.name.value
             }),
@@ -21,28 +20,27 @@ export default function User() {
                 'Content-Type': 'application/json'
             },
             method: 'POST'
-        });
-
-        result = await result.json();
-        if(result.errorMessage.length > 0) {
-            setResponse(result);
-            window.open(`https://t.me/react_remember_me_service_bot?start=${event.target.name.value}`, '_blank');
-        } else {
-            let res = await fetch('/api/user', {
-                method: 'POST',
-                body: JSON.stringify({
-                    name: event.target.name.value,
-                    telegramId: result.telegramId
-                })
-            });
-
-            res = await res.json();   
-            
-            router.push({
-                pathname: '/',
-                query: { message: `User ${event.target.name.value} successful added.` }
-            });       
-        }
+        })
+        .then((result) => result.json())
+        .then((result) => {
+            if(result.errorMessage.length > 0) {
+                setResponse(result);
+                window.open(`https://t.me/react_remember_me_service_bot?start=${event.target.name.value}`, '_blank');
+            } else {
+                 fetch('/api/user', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: event.target.name.value,
+                        telegramId: result.telegramId
+                    })
+                });  
+                
+                router.push({
+                    pathname: '/',
+                    query: { message: `User ${event.target.name.value} successful added.` }
+                });       
+            }
+        });        
     }
 
     return (
