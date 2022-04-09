@@ -26,7 +26,12 @@ export default function Home() {
         Remember me service
         </h1>
         <DataTableX />
-        {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null }        
+        {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null } 
+        <Button key="addReminder" style={{ backgroundColor: 'White' }}>
+          <Link href="/reminderPage">
+            <a>Add reminder</a>
+          </Link>
+        </Button>       
       </main>
 
       <buttons>
