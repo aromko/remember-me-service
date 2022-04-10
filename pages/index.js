@@ -46,7 +46,7 @@ export default function Home() {
       </buttons>
 
       <footer>
-        <p>ddd</p>
+        <p>Current Version: v0.1</p>
       </footer>
         
 
@@ -87,7 +87,7 @@ export default function Home() {
           height: 100px;
           border-top: 1px solid #eaeaea;
           display: flex;
-          justify-content: center;
+          justify-content: flex-end;
           align-items: center;
         }
 
