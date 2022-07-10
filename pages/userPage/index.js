@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react';
 
 export default function User() {
-    const initialState = {telegramId: 0, errorMessage: ''};
+    const initialState = {userTelegramId: 0, errorMessage: ''};
     const router = useRouter();
     const [response, setResponse] = useState(initialState);
     const resetStatus = () => {
@@ -31,7 +31,7 @@ export default function User() {
                     method: 'POST',
                     body: JSON.stringify({
                         name: event.target.name.value,
-                        telegramId: result.telegramId
+                        userTelegramId: result.userTelegramId
                     })
                 });  
                 
