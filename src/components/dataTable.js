@@ -1,6 +1,7 @@
 import DataTable from 'react-data-table-component';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import Button from '@mui/material/Button'
+import Button from '@mui/material/Button';
+import { useRouter } from 'next/router';
 
 const columns = [
     {
@@ -30,6 +31,7 @@ const columns = [
 ];
 
 export default function DataTableX() {
+    const router = useRouter();
     const [reminders, setReminders] = useState([]);
     const [selectedRows, setSelectedRows] = useState([]);
     const [toggleCleared, setToggleCleared] = useState(false);
@@ -52,6 +54,15 @@ export default function DataTableX() {
             if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.name)}?`)) {
                 setToggleCleared(!toggleCleared);
                 setReminders(differenceBy(reminders, selectedRows));
+                fetch('/api/reminder', {
+                    method: 'DELETE',
+                    body: JSON.stringify(selectedRows)
+                });
+
+                router.push({
+                    pathname: '/',
+                    query: { message: `Reminder(s) successful deleted.` }
+                });
             }
         };
 

@@ -1,21 +1,34 @@
 import clientPromise from "../../../lib/mongodb";
+import {ObjectId} from 'mongodb';
 
 export default async function handler(req, res) {
     const client = await clientPromise;
     const db = client.db("myFirstDatabase");
+    const tableName = 'Reminder';
     switch (req.method) {
         case "POST":
             let bodyObject = JSON.parse(req.body);
             try {
-                await db.collection("Reminder").insertOne(bodyObject);
+                await db.collection(tableName).insertOne(bodyObject);
                 res.json({errorMessage: ''});
             } catch (e) {
                 res.json({errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.code}`});
             }
             break;
         case "GET":
-            const reminders = await db.collection("Reminder").find({}).toArray();
+            const reminders = await db.collection(tableName).find({}).toArray();
             res.json({ status: 200, data: reminders });
+            break;
+        case "DELETE":
+            let bodyArray = JSON.parse(req.body);
+            try {
+                for (const data of bodyArray){
+                    await db.collection(tableName).deleteOne({ _id: new ObjectId(data._id) })
+                }
+                res.json({errorMessage: ''});
+            } catch (e) {
+                res.json({errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.message}`});
+            }
             break;
     }
 }
