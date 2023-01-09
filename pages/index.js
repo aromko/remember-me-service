@@ -19,6 +19,7 @@ export default function Home() {
       <Head>
         <name>Alert Service</name>
         <link rel="icon" href="/favicon.ico" />
+        <title>Remember-me-service</title>
       </Head>
 
       <main>
@@ -40,8 +41,8 @@ export default function Home() {
             <a>Add user</a>
           </Link>
         </Button>
-        <Button key="delete" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'White' }}>
-          SyncData
+        <Button key="syncData" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'green' }}>
+          Send test message to telegram
         </Button>
       </buttons>
 
@@ -78,7 +79,7 @@ export default function Home() {
           display: flex;
           flex-direction: row;
           justify-content: flex-end;
-          align-items: center;
+          align-items: right;
         }
 
         footer {

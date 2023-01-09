@@ -2,8 +2,10 @@ import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react';
 
 export default function Reminder() {
+    const router = useRouter();
     const initialState = {telegramId: 0, errorMessage: ''};
     const [users, setUsers] = useState([]);
+    const [response, setResponse] = useState(initialState);
 
     useEffect(() => {
         fetch('api/user')
@@ -13,8 +15,6 @@ export default function Reminder() {
         })
     }, [])
 
-    const router = useRouter();
-    const [response, setResponse] = useState(initialState);
     const resetStatus = () => {
         setResponse(initialState);
     }
