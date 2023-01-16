@@ -29,17 +29,13 @@ export default function Home() {
         <DataTableX />
         {message.length > 0 ? <div style={{color: 'green'}}>{message}</div> : null } 
         <Button key="addReminder" style={{ backgroundColor: 'White' }}>
-          <Link href="/reminderPage">
-            <a>Add reminder</a>
-          </Link>
+          <Link href="/reminderPage">Add reminder</Link>
         </Button>       
       </main>
 
       <buttons>
         <Button key="addUser" style={{ backgroundColor: 'White' }}>
-          <Link href="/userPage">
-            <a>Add user</a>
-          </Link>
+          <Link href="/userPage">Add user</Link>
         </Button>
         <Button key="syncData" onClick={() => sendRememberMessageToBot()} style={{ backgroundColor: 'green' }}>
           Send test message to telegram
