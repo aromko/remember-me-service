@@ -1,6 +1,6 @@
 import DataTable from 'react-data-table-component';
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import Button from '@mui/material/Button';
+import { Button } from '@marigold/components'
 import { useRouter } from 'next/router';
 
 const columns = [
