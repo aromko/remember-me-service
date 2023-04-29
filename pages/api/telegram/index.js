@@ -19,12 +19,10 @@ export default async function handler(req, res) {
   if (typeof userTelegramId === 'number') {
     res.status(200).json({ userTelegramId: userTelegramId, errorMessage: '' });
   } else {
-    res
-      .status(500)
-      .json({
-        userTelegramId: userTelegramId,
-        errorMessage:
-          'No user was found. Please add the Telegram Bot (react_remember_me_service_bot) via Telegram App and try again.',
-      });
+    res.status(500).json({
+      userTelegramId: userTelegramId,
+      errorMessage:
+        'No user was found. Please add the Telegram Bot (react_remember_me_service_bot) via Telegram App and try again.',
+    });
   }
 }
