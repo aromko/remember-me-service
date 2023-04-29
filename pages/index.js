@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import DataTableX from '../src/components/dataTable';
+import { DataTableX } from '../src/components/DataTableX';
 import {
   Button,
   Divider,

@@ -1,5 +1,5 @@
-import DataTable from 'react-data-table-component';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import DataTable from 'react-data-table-component';
 import { Button } from '@marigold/components';
 import { useRouter } from 'next/router';
 
@@ -30,7 +30,7 @@ const columns = [
   },
 ];
 
-export default function DataTableX() {
+export const DataTableX = () => {
   const router = useRouter();
   const [reminders, setReminders] = useState([]);
   const [selectedRows, setSelectedRows] = useState([]);
@@ -97,4 +97,4 @@ export default function DataTableX() {
       pagination
     />
   );
-}
+};
