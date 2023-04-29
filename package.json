@@ -4,12 +4,14 @@
     "preinstall": "npx only-allow pnpm",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint . --ignore-pattern node_modules --ignore-pattern dist --ignore-pattern packages/types/src/index.ts --ignore-pattern \".cache\" --ignore-pattern public"
   },
   "dependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
     "@marigold/components": "^5.5.0",
+    "@marigold/eslint-config": "^0.4.9",
     "@marigold/theme-b2b": "^23.0.0",
     "bootstrap": "^5.2.3",
     "mongodb": "^4.16.0",
