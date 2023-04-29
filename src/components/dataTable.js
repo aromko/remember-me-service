@@ -1,7 +1,7 @@
 import DataTable from 'react-data-table-component';
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { Button } from '@marigold/components'
-import { useRouter } from 'next/router';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import {Button} from '@marigold/components'
+import {useRouter} from 'next/router';
 
 const columns = [
     {
@@ -38,10 +38,10 @@ export default function DataTableX() {
 
     useEffect(() => {
         fetch('api/reminder')
-        .then((res) => res.json())
-        .then((res) => {
-            setReminders(res.data);
-        })
+            .then((res) => res.json())
+            .then((res) => {
+                setReminders(res.data);
+            })
     }, [])
 
     const handleRowSelected = useCallback(state => {
@@ -50,7 +50,7 @@ export default function DataTableX() {
 
     const contextActions = useMemo(() => {
         const handleDelete = () => {
-            
+
             if (window.confirm(`Are you sure you want to delete:\r ${selectedRows.map(r => r.name)}?`)) {
                 setToggleCleared(!toggleCleared);
                 setReminders(differenceBy(reminders, selectedRows));
@@ -61,7 +61,7 @@ export default function DataTableX() {
 
                 router.push({
                     pathname: '/',
-                    query: { message: `Reminder(s) successful deleted.` }
+                    query: {message: `Reminder(s) successful deleted.`}
                 });
             }
         };
@@ -71,24 +71,23 @@ export default function DataTableX() {
         };
 
         return (
-            <div>
-                <Button key="delete" onClick={handleDelete} style={{ backgroundColor: 'red', color: 'white' }}>
-                    Delete
-                </Button>
-            </div>
+            <Button key="delete" onClick={handleDelete} style={{backgroundColor: 'red', color: 'white'}}>
+                Delete
+            </Button>
         );
     }, [reminders, selectedRows, toggleCleared]);
 
     return (
         <DataTable
+            keyField='_id'
             title="Reminders"
             columns={columns}
             data={reminders}
             selectableRows
-			contextActions={contextActions}
-			onSelectedRowsChange={handleRowSelected}
-			clearSelectedRows={toggleCleared}
-			pagination
+            contextActions={contextActions}
+            onSelectedRowsChange={handleRowSelected}
+            clearSelectedRows={toggleCleared}
+            pagination
         />
     )
 }
