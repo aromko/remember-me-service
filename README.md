@@ -30,11 +30,12 @@ In order to use the RMS with all his features you need to create a telegram bot.
 
 After creating your [mongoDB](https://www.mongodb.com/cloud/atlas/lp/try2-de?utm_source=google&utm_campaign=gs_emea_germany_search_core_brand_atlas_desktop&utm_term=mongodb&utm_medium=cpc_paid_search&utm_ad=e&utm_ad_campaign_id=12212624524&adgroup=115749704783&gclid=Cj0KCQjw8amWBhCYARIsADqZJoUgHNa73lhAowO1QxTTUkIzLGEo52iHA4t5QUR1jCB8w4OqX7ow15UaAvh9EALw_wcB) database click under Deployment -> Database **Connect** -> Connect your application and copy the connection string.
 
-Note: 
+Note:
+
 - use the **shared Cluster** to have a free mongoDB
-- don't forgot to replace the **password** and add your  **database name** <br>
-mongodb+srv://admin:< password >@cluster0.6xnyv.mongodb.net/< databaseName >?retryWrites=true&w=majority
-<br/><br/>
+- don't forgot to replace the **password** and add your **database name** <br>
+  mongodb+srv://admin:< password >@cluster0.6xnyv.mongodb.net/< databaseName >?retryWrites=true&w=majority
+  <br/><br/>
 
 ### 3. .env.local
 
@@ -43,7 +44,7 @@ Create an .env.local in your folder and add the following variables:
 - NEXT_PUBLIC_TELEGRAM_BOT_TOKEN=< add the generated token from BotFather >
 
 - MONGODB_URI=< add the customized mongoDB uri>
-<br/><br/>
+  <br/><br/>
 
 ## How to run locally?
 
