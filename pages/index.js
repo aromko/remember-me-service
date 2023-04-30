@@ -16,7 +16,7 @@ import {
   Text,
 } from '@marigold/components';
 import theme from '@marigold/theme-b2b';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 
 const sendRememberMessageToBot = () => {
@@ -27,7 +27,13 @@ const sendRememberMessageToBot = () => {
 
 export default function Home() {
   const router = useRouter();
-  let message = router.query.message ?? '';
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    setMessage(router.query.message ?? '');
+    delete router.query.message;
+    router.push(router);
+  }, []);
 
   return (
     <MarigoldProvider theme={theme}>
