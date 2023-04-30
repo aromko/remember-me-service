@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import theme from '@marigold/theme-b2b';
+import {
+  Button,
+  FieldGroup,
+  Headline,
+  MarigoldProvider,
+  Message,
+  Stack,
+  Text,
+  TextField,
+} from '@marigold/components';
 
 export const UserForm = () => {
   const initialState = { userTelegramId: 0, errorMessage: '' };
@@ -10,8 +21,6 @@ export const UserForm = () => {
   };
 
   const registerUser = event => {
-    event.preventDefault();
-
     fetch('/api/telegram', {
       body: JSON.stringify({
         name: event.target.name.value,
@@ -49,22 +58,41 @@ export const UserForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={registerUser}>
-        <label htmlFor="name">Name</label>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          autoComplete="name"
-          required
-          onChange={resetStatus}
-        />
-        <button type="submit">Register</button>
-      </form>
-      {response.errorMessage.length > 0 ? (
-        <div style={{ color: 'red' }}>{response.errorMessage}</div>
-      ) : null}
-    </div>
+    <MarigoldProvider theme={theme}>
+      <Stack space="large" alignX="center">
+        <Stack space="xsmall">
+          <FieldGroup labelWidth="medium">
+            <Headline level="2">User Registration</Headline>
+            <Stack space="medium">
+              <TextField
+                label="Name:"
+                required
+                placeholder="Name"
+                type="text"
+                description="Please enter a name."
+                onChange={resetStatus}
+              />
+            </Stack>
+            <Stack alignX="right">
+              <Button
+                variant="primary"
+                size="small"
+                type="submit"
+                onPress={registerUser}
+              >
+                Register
+              </Button>
+            </Stack>
+            <Stack alignX="center">
+              {response.errorMessage.length > 0 ? (
+                <Message messageTitle="Error" variant="error">
+                  <Text>{response.errorMessage}</Text>
+                </Message>
+              ) : null}
+            </Stack>
+          </FieldGroup>
+        </Stack>
+      </Stack>
+    </MarigoldProvider>
   );
 };
