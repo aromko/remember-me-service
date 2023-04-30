@@ -11,14 +11,11 @@ import {
   Text,
   TextField,
 } from '@marigold/components';
+import { useResponse } from '../../customHooks';
 
 export const UserForm = () => {
-  const initialState = { userTelegramId: 0, errorMessage: '' };
   const router = useRouter();
-  const [response, setResponse] = useState(initialState);
-  const resetStatus = () => {
-    setResponse(initialState);
-  };
+  const message = useResponse();
 
   const registerUser = event => {
     fetch('/api/telegram', {
@@ -33,7 +30,7 @@ export const UserForm = () => {
       .then(result => result.json())
       .then(result => {
         if (result.errorMessage.length > 0) {
-          setResponse(result);
+          message.handleResponse(result);
           window.open(
             `https://t.me/react_remember_me_service_bot?start=${event.target.name.value}`,
             '_blank'
@@ -70,7 +67,7 @@ export const UserForm = () => {
                 placeholder="Name"
                 type="text"
                 description="Please enter a name."
-                onChange={resetStatus}
+                onChange={message.resetResponse}
               />
             </Stack>
             <Stack alignX="right">
@@ -84,9 +81,9 @@ export const UserForm = () => {
               </Button>
             </Stack>
             <Stack alignX="center">
-              {response.errorMessage.length > 0 ? (
+              {message.response.errorMessage.length > 0 ? (
                 <Message messageTitle="Error" variant="error">
-                  <Text>{response.errorMessage}</Text>
+                  <Text>{message.response.errorMessage}</Text>
                 </Message>
               ) : null}
             </Stack>

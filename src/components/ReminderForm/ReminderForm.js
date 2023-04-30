@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import { useResponse } from '../../customHooks';
 
 export const ReminderForm = () => {
   const router = useRouter();
-  const initialState = { telegramId: 0, errorMessage: '' };
   const [users, setUsers] = useState([]);
-  const [response, setResponse] = useState(initialState);
+  const message = useResponse();
 
   useEffect(() => {
     fetch('api/user')
@@ -14,10 +14,6 @@ export const ReminderForm = () => {
         setUsers(res.data);
       });
   }, []);
-
-  const resetStatus = () => {
-    setResponse(initialState);
-  };
 
   const saveReminder = event => {
     event.preventDefault();
@@ -56,7 +52,7 @@ export const ReminderForm = () => {
             type="text"
             autoComplete="name"
             required
-            onChange={resetStatus}
+            onChange={message.resetResponse}
           />
         </div>
         <div>
@@ -78,7 +74,7 @@ export const ReminderForm = () => {
             type="date"
             autoComplete="name"
             required
-            onChange={resetStatus}
+            onChange={message.resetResponse}
           />
         </div>
         <div>
@@ -103,8 +99,8 @@ export const ReminderForm = () => {
           <button type="submit">Speichern</button>
         </div>
       </form>
-      {response.errorMessage.length > 0 ? (
-        <div style={{ color: 'red' }}>{response.errorMessage}</div>
+      {message.response.errorMessage.length > 0 ? (
+        <div style={{ color: 'red' }}>{message.response.errorMessage}</div>
       ) : null}
     </div>
   );
