@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import theme from '@marigold/theme-b2b';
 import {
@@ -18,6 +18,8 @@ export const UserForm = () => {
   const message = useResponse();
 
   const registerUser = event => {
+    event.preventDefault();
+
     fetch('/api/telegram', {
       body: JSON.stringify({
         name: event.target.name.value,
@@ -60,26 +62,25 @@ export const UserForm = () => {
         <Stack space="xsmall">
           <FieldGroup labelWidth="medium">
             <Headline level="2">User Registration</Headline>
-            <Stack space="medium">
-              <TextField
-                label="Name:"
-                required
-                placeholder="Name"
-                type="text"
-                description="Please enter a name."
-                onChange={message.resetResponse}
-              />
-            </Stack>
-            <Stack alignX="right">
-              <Button
-                variant="primary"
-                size="small"
-                type="submit"
-                onPress={registerUser}
-              >
-                Register
-              </Button>
-            </Stack>
+            <form onSubmit={registerUser}>
+              <Stack space="medium">
+                <TextField
+                  id="name"
+                  name="name"
+                  label="Name:"
+                  required
+                  placeholder="Name"
+                  type="text"
+                  description="Please enter a name."
+                  onChange={message.resetResponse}
+                />
+              </Stack>
+              <Stack alignX="right">
+                <Button variant="primary" size="small" type="submit">
+                  Register
+                </Button>
+              </Stack>
+            </form>
             <Stack alignX="center">
               {message.response.errorMessage.length > 0 ? (
                 <Message messageTitle="Error" variant="error">

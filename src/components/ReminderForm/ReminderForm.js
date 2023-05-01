@@ -1,10 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useResponse } from '../../customHooks';
+import theme from '@marigold/theme-b2b';
+import {
+  Button,
+  FieldGroup,
+  Headline,
+  MarigoldProvider,
+  Select,
+  Stack,
+  TextField,
+} from '@marigold/components';
 
 export const ReminderForm = () => {
   const router = useRouter();
   const [users, setUsers] = useState([]);
+  const [messageType, setMessageType] = useState('TELEGRAM');
+  const [telegramId, setTelegramId] = useState([]);
   const message = useResponse();
 
   useEffect(() => {
@@ -17,19 +29,16 @@ export const ReminderForm = () => {
 
   const saveReminder = event => {
     event.preventDefault();
+    console.log(telegramId);
     fetch('/api/reminder', {
       method: 'POST',
       body: JSON.stringify({
         name: event.target.name.value,
         description: event.target.description.value,
         executionAt: event.target.executionAt.value,
-        messageType:
-          event.target.messageType[event.target.messageType.selectedIndex]
-            .value,
-        userName:
-          event.target.telegramId[event.target.telegramId.selectedIndex].text,
-        telegramId:
-          event.target.telegramId[event.target.telegramId.selectedIndex].value,
+        messageType: messageType,
+        userName: telegramId[1],
+        telegramId: telegramId[0],
       }),
     });
 
@@ -42,66 +51,86 @@ export const ReminderForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={saveReminder}>
-        <div>
-          <label htmlFor="name">Name</label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            autoComplete="name"
-            required
-            onChange={message.resetResponse}
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Beschreibung</label>
-          <input
-            id="description"
-            name="description"
-            type="text"
-            autoComplete="name"
-            required
-            onChange={resetStatus}
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Ausführungdatum</label>
-          <input
-            id="executionAt"
-            name="executionAt"
-            type="date"
-            autoComplete="name"
-            required
-            onChange={message.resetResponse}
-          />
-        </div>
-        <div>
-          <label htmlFor="name">Nachrichtenart</label>
-          <select id="messageType" name="messageType" required>
-            <option value="TELEGRAM">Telegram</option>
-          </select>
-        </div>
-        <div>
-          <label htmlFor="name">Benutzer</label>
-          <select id="telegramId" name="telegramId" required>
-            {users.length !== 0
-              ? users.map(item => (
-                  <option key={item._id} value={item.telegramId}>
-                    {item.name}
-                  </option>
-                ))
-              : null}
-          </select>
-        </div>
-        <div>
-          <button type="submit">Speichern</button>
-        </div>
-      </form>
+    <MarigoldProvider theme={theme}>
+      <Stack space="large" alignX="center">
+        <Stack space="xsmall">
+          <FieldGroup labelWidth="large">
+            <Headline level="2">Add Reminder</Headline>
+            <form onSubmit={saveReminder}>
+              <Stack space="medium">
+                <TextField
+                  id="name"
+                  name="name"
+                  label="Name:"
+                  required
+                  placeholder="Name"
+                  type="text"
+                  description="Please enter a name."
+                  onChange={message.resetResponse}
+                />
+                <TextField
+                  id="description"
+                  name="description"
+                  label="Description"
+                  required
+                  placeholder="Description"
+                  type="text"
+                  description="Please enter a description."
+                  onChange={message.resetResponse}
+                />
+                <TextField
+                  id="executionAt"
+                  name="executionAt"
+                  label="Execution date"
+                  required
+                  placeholder="Execution date"
+                  type="date"
+                  description="Please enter a execution date."
+                  onChange={message.resetResponse}
+                />
+                <Select
+                  id="messageType"
+                  name="messageType"
+                  required
+                  label="Messae type"
+                  defaultSelectedKey="TELEGRAM"
+                  onChange={selectedKey => {
+                    setMessageType(selectedKey);
+                  }}
+                >
+                  <Select.Option key={'TELEGRAM'}>Telegram</Select.Option>
+                </Select>
+                <Select
+                  id="telegramId"
+                  name="telegramId"
+                  required
+                  label="User"
+                  placeholder="Please select a user"
+                  onChange={selectedKey => {
+                    setTelegramId(selectedKey.split('_'));
+                  }}
+                >
+                  {users.length !== 0
+                    ? users.map(item => (
+                        <Select.Option key={`${item._id}_${item.name}`}>
+                          {item.name}
+                        </Select.Option>
+                      ))
+                    : null}
+                </Select>
+              </Stack>
+              <Stack alignX="right">
+                <Button variant="primary" size="small" type="submit">
+                  Save
+                </Button>
+              </Stack>
+            </form>
+          </FieldGroup>
+        </Stack>
+      </Stack>
       {message.response.errorMessage.length > 0 ? (
         <div style={{ color: 'red' }}>{message.response.errorMessage}</div>
       ) : null}
-    </div>
+    </MarigoldProvider>
   );
 };
