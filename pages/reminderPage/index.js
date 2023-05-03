@@ -1,5 +1,5 @@
 import React from 'react';
-import { ReminderForm } from '../../src/components/ReminderForm';
+import { ReminderForm } from '../../src/components';
 
 const RenderReminderFormPage = () => {
   return <ReminderForm />;

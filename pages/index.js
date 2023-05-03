@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { DataTableX } from '../src/components/DataTableX';
 import {
   Button,
   Divider,
@@ -18,6 +17,7 @@ import {
 import theme from '@marigold/theme-b2b';
 import React, { useEffect, useState } from 'react';
 import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
+import { DataTableX } from '../src/components';
 
 const sendRememberMessageToBot = () => {
   fetch(
