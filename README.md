@@ -1,4 +1,7 @@
 # [RMS] Remember me service
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The remind me service, RMS for short, contains a small web application that allows you to manage reminders. These reminders are sent via push messages to Telegram (in the future, other interfaces will also be connected).
 <br/><br/>
@@ -62,3 +65,17 @@ Open the browser under **localhost:3000**
 pnpm run build (build the application for production usage)
 pnpm run start (start a Next.js production server)
 ```
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
