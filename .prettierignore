@@ -17,3 +17,4 @@ docs/public/render-page.js.map
 *.ico
 *.svg
 **/tsconfig.tsbuildinfo
+.husky/**
