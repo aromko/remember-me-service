@@ -7,7 +7,7 @@ jest.mock('next/router', () => require('next-router-mock'));
 test('allows to set custom width', () => {
   render(<UserForm />);
 
-  const label = screen.getByText('Name:s').parentElement;
+  const label = screen.getByText('Name:').parentElement;
   const input = label!.querySelector('input');
   const error = screen.getByText('Please enter a name.');
 
