@@ -1,6 +1,68 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "config:base"
+  "extends": ["config:base"],
+  "schedule": ["before 6:00am"],
+  "platform": "github",
+  "packageRules": [
+    {
+      "updateTypes": ["major"],
+      "automerge": false,
+      "prCreation": "immediate",
+      "matchUpdateTypes": ["major"]
+    },
+    {
+      "updateTypes": ["minor", "patch"],
+      "automerge": true,
+      "matchUpdateTypes": ["minor", "patch"]
+    },
+    {
+      "groupName": "Dependencies",
+      "labels": ["dependencies"],
+      "matchPackagePatterns": ["*"]
+    },
+    {
+      "groupName": "Dev Dependencies",
+      "labels": ["devDependencies"],
+      "matchPackagePatterns": ["@types/*", "jest-*", "@testing-library/*"]
+    },
+    {
+      "groupName": "Security",
+      "labels": ["security"],
+      "matchPackagePatterns": ["^security-"]
+    },
+    {
+      "groupName": "Code Quality",
+      "labels": ["codeQuality"],
+      "matchPackagePatterns": ["eslint-*", "prettier-*"]
+    },
+    {
+      "groupName": "Performance",
+      "labels": ["performance"],
+      "matchPackagePatterns": ["lodash", "moment"]
+    },
+    {
+      "groupName": "Documentation",
+      "labels": ["documentation"],
+      "matchPackagePatterns": ["@storybook/*", "mdx-docs-loader"]
+    },
+    {
+      "groupName": "Infrastructure",
+      "labels": ["infrastructure"],
+      "matchPackagePatterns": ["@aws-sdk/*", "firebase-tools"]
+    },
+    {
+      "groupName": "UI/UX",
+      "labels": ["ui/ux"],
+      "matchPackagePatterns": ["@marigold/*"]
+    },
+    {
+      "groupName": "Localization",
+      "labels": ["localization"],
+      "matchPackagePatterns": ["react-i18next", "i18next"]
+    },
+    {
+      "groupName": "Compatibility",
+      "labels": ["compatibility"],
+      "matchPackagePatterns": ["@babel/*", "core-js"]
+    }
   ]
 }
