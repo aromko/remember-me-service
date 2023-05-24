@@ -1,7 +1,11 @@
 import clientPromise from '../../../lib/mongodb';
 import { ObjectId } from 'mongodb';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const client = await clientPromise;
   const db = client.db('myFirstDatabase');
   const tableName = 'Reminder';
@@ -11,7 +15,7 @@ export default async function handler(req, res) {
       try {
         await db.collection(tableName).insertOne(bodyObject);
         res.json({ errorMessage: '' });
-      } catch (e) {
+      } catch (e: any) {
         res.json({
           errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.code}`,
         });
@@ -30,7 +34,7 @@ export default async function handler(req, res) {
             .deleteOne({ _id: new ObjectId(data._id) });
         }
         res.json({ errorMessage: '' });
-      } catch (e) {
+      } catch (e: any) {
         res.json({
           errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.message}`,
         });

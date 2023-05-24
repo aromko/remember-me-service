@@ -17,12 +17,17 @@ export const UserForm = () => {
   const router = useRouter();
   const message = useResponse();
 
-  const registerUser = event => {
+  const registerUser = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    const nameInput = event.currentTarget.elements.namedItem(
+      'name'
+    ) as HTMLInputElement;
+    const name = nameInput.value;
 
     fetch('/api/telegram', {
       body: JSON.stringify({
-        name: event.target.name.value,
+        name: name,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -34,14 +39,14 @@ export const UserForm = () => {
         if (result.errorMessage.length > 0) {
           message.handleResponse(result);
           window.open(
-            `https://t.me/react_remember_me_service_bot?start=${event.target.name.value}`,
+            `https://t.me/react_remember_me_service_bot?start=${name}`,
             '_blank'
           );
         } else {
           fetch('/api/user', {
             method: 'POST',
             body: JSON.stringify({
-              name: event.target.name.value,
+              name: name,
               userTelegramId: result.userTelegramId,
             }),
           });
@@ -49,7 +54,7 @@ export const UserForm = () => {
           router.push({
             pathname: '/',
             query: {
-              message: `User ${event.target.name.value} successful added.`,
+              message: `User ${name} successful added.`,
             },
           });
         }

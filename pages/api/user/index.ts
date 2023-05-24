@@ -1,15 +1,20 @@
+import { NextApiRequest, NextApiResponse } from 'next';
 import clientPromise from '../../../lib/mongodb';
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+): Promise<void> {
   const client = await clientPromise;
   const db = client.db('myFirstDatabase');
+
   switch (req.method) {
     case 'POST':
-      let bodyObject = JSON.parse(req.body);
+      let bodyObject: any = JSON.parse(req.body);
       try {
         await db.collection('User').insertOne(bodyObject);
         res.json({ errorMessage: '' });
-      } catch (e) {
+      } catch (e: any) {
         res.json({
           errorMessage: `Something went wrong. ErrorCode from MongoDB ${e.code}`,
         });

@@ -11,12 +11,18 @@ import {
   Stack,
   TextField,
 } from '@marigold/components';
+import { Key } from 'react/index';
 
-export const ReminderForm = () => {
+interface User {
+  _id: string;
+  name: string;
+}
+
+export const ReminderForm: React.FC = () => {
   const router = useRouter();
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<User[]>([]);
   const [messageType, setMessageType] = useState('TELEGRAM');
-  const [telegramId, setTelegramId] = useState([]);
+  const [telegramId, setTelegramId] = useState<string[]>([]);
   const message = useResponse();
 
   useEffect(() => {
@@ -27,15 +33,16 @@ export const ReminderForm = () => {
       });
   }, []);
 
-  const saveReminder = event => {
+  const saveReminder = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     fetch('/api/reminder', {
       method: 'POST',
       body: JSON.stringify({
-        name: event.target.name.value,
-        description: event.target.description.value,
-        executionAt: event.target.executionAt.value,
+        // @ts-ignore
+        name: event.currentTarget['name'].value,
+        description: event.currentTarget['description'].value,
+        executionAt: event.currentTarget['executionAt'].value,
         messageType: messageType,
         userName: telegramId[1],
         telegramId: telegramId[0],
@@ -45,7 +52,8 @@ export const ReminderForm = () => {
     router.push({
       pathname: '/',
       query: {
-        message: `Reminder ${event.target.name.value} successful added.`,
+        // @ts-ignore
+        message: `Reminder ${event.currentTarget['name'].value} successfully added.`,
       },
     });
   };
@@ -85,16 +93,16 @@ export const ReminderForm = () => {
                   required
                   placeholder="Execution date"
                   type="date"
-                  description="Please enter a execution date."
+                  description="Please enter an execution date."
                   onChange={message.resetResponse}
                 />
                 <Select
                   id="messageType"
                   name="messageType"
                   required
-                  label="Messae type"
+                  label="Message type"
                   defaultSelectedKey="TELEGRAM"
-                  onChange={selectedKey => {
+                  onChange={(selectedKey: Key) => {
                     setMessageType(selectedKey as string);
                   }}
                 >
@@ -106,17 +114,21 @@ export const ReminderForm = () => {
                   required
                   label="User"
                   placeholder="Please select a user"
-                  onChange={selectedKey => {
-                    setTelegramId((selectedKey as string).split('_'));
+                  onChange={(selectedKey: string | number | null) => {
+                    if (selectedKey !== null) {
+                      setTelegramId(String(selectedKey).split('_'));
+                    }
                   }}
                 >
-                  {users.length !== 0
-                    ? users.map(item => (
-                        <Select.Option key={`${item._id}_${item.name}`}>
-                          {item.name}
-                        </Select.Option>
-                      ))
-                    : null}
+                  {users.map(item => (
+                    <Select.Option
+                      key={`${item._id}_${item.name}`}
+                      // @ts-ignore
+                      value={`${item._id}_${item.name}`}
+                    >
+                      {item.name}
+                    </Select.Option>
+                  ))}
                 </Select>
               </Stack>
               <Stack alignX="right">
