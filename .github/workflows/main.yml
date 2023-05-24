@@ -24,17 +24,14 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
 
-      - name: Install pnpm
-        run: npm install -g pnpm
-
       - name: Install dependencies
         run: pnpm install
 
       - name: Run lint
-        run: npm run lint
+        run: pnpm run lint
 
       - name: Run prettier
-        run: npm run prettier
+        run: pnpm run format
 
       - name: Run tests
-        run: npm run test
+        run: pnpm run test
