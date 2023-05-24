@@ -30,8 +30,8 @@ jobs:
       - name: Run lint
         run: pnpm run lint
 
-      - name: Run prettier
-        run: pnpm run format
+      - name: Run typescript compiler
+        run: tsc
 
       - name: Run tests
         run: pnpm run test
