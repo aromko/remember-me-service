@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "commonjs",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "jsx": "preserve",
     "strict": true,
@@ -20,24 +16,12 @@
     "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/pages/*": [
-        "./pages/*"
-      ],
-      "@/styles/*": [
-        "./styles/*"
-      ]
+      "@/components/*": ["./components/*"],
+      "@/pages/*": ["./pages/*"],
+      "@/styles/*": ["./styles/*"]
     },
     "incremental": true
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

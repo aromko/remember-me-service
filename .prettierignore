@@ -16,3 +16,4 @@ docs/public/render-page.js.map
 *.png
 *.ico
 *.svg
+**/tsconfig.tsbuildinfo
