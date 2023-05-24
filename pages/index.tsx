@@ -21,13 +21,14 @@ import { DataTableX } from '../src/components';
 
 const sendRememberMessageToBot = () => {
   fetch(
+    // @ts-ignore
     `https://api.telegram.org/bot${process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=584840017&text=Hello%20from%20your%20new%20bot`
   ).then(response => response.json());
 };
 
 export default function Home() {
   const router = useRouter();
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState<string | string[]>('');
 
   useEffect(() => {
     setMessage(router.query.message ?? '');
@@ -75,7 +76,6 @@ export default function Home() {
               variant="primary"
               key="syncData"
               onClick={() => sendRememberMessageToBot()}
-              css={{ backgroundColor: 'green' }}
             >
               Send test message to telegram
             </Button>

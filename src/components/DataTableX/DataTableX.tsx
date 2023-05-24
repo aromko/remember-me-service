@@ -3,37 +3,47 @@ import DataTable from 'react-data-table-component';
 import { Button } from '@marigold/components';
 import { useRouter } from 'next/router';
 
+interface Reminder {
+  _id: string;
+  name: string;
+  description: string;
+  executionAt: string;
+  messageType: string;
+  userName: string;
+  telegramId: string;
+}
+
 const columns = [
   {
     name: 'Name',
-    selector: row => row.name,
+    selector: (row: Reminder) => row.name,
   },
   {
     name: 'Description',
-    selector: row => row.description,
+    selector: (row: Reminder) => row.description,
   },
   {
     name: 'Execution Data',
-    selector: row => row.executionAt,
+    selector: (row: Reminder) => row.executionAt,
   },
   {
     name: 'Message type',
-    selector: row => row.messageType,
+    selector: (row: Reminder) => row.messageType,
   },
   {
     name: 'User',
-    selector: row => row.userName,
+    selector: (row: Reminder) => row.userName,
   },
   {
     name: 'Telegram-Id',
-    selector: row => row.telegramId,
+    selector: (row: Reminder) => row.telegramId,
   },
 ];
 
-export const DataTableX = () => {
+export const DataTableX: React.FC = () => {
   const router = useRouter();
-  const [reminders, setReminders] = useState([]);
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [reminders, setReminders] = useState<Reminder[]>([]);
+  const [selectedRows, setSelectedRows] = useState<Reminder[]>([]);
   const [toggleCleared, setToggleCleared] = useState(false);
 
   useEffect(() => {
@@ -44,9 +54,12 @@ export const DataTableX = () => {
       });
   }, []);
 
-  const handleRowSelected = useCallback(state => {
-    setSelectedRows(state.selectedRows);
-  }, []);
+  const handleRowSelected = useCallback(
+    (state: { selectedRows: Reminder[] }) => {
+      setSelectedRows(state.selectedRows);
+    },
+    []
+  );
 
   const contextActions = useMemo(() => {
     const handleDelete = () => {
@@ -69,7 +82,10 @@ export const DataTableX = () => {
       }
     };
 
-    const differenceBy = (reminders, selectableRows) => {
+    const differenceBy = (
+      reminders: Reminder[],
+      selectableRows: Reminder[]
+    ) => {
       return reminders.filter(x => !selectableRows.includes(x));
     };
 
@@ -82,7 +98,7 @@ export const DataTableX = () => {
         Delete
       </Button>
     );
-  }, [reminders, selectedRows, toggleCleared]);
+  }, [reminders, selectedRows, toggleCleared, router]);
 
   return (
     <DataTable

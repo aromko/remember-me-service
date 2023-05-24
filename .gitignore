@@ -31,3 +31,5 @@ yarn-error.log*
 
 #Webstorm
 /.idea
+/next-env.d.ts
+/tsconfig.tsbuildinfo
