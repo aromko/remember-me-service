@@ -9,9 +9,14 @@
     "format": "prettier --write \"**/*\"",
     "test": "jest --config jest.config.js --runInBand",
     "test:coverage": "jest --config jest.config.js --coverage --coverageReporters html",
-    "test:ci": "jest --config jest.config.js --coverage --ci --no-cache"
+    "test:ci": "jest --config jest.config.js --coverage --ci --no-cache",
+    "precommit": "pnpm run lint && pnpm-lock.yaml run format && pnpm run test"
   },
-  "pre-commit": ["lint", "format", "test"],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm run precommit"
+    }
+  },
   "dependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
@@ -42,6 +47,6 @@
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@types/testing-library__jest-dom": "^5.14.6",
-    "pre-commit": "^1.2.2"
+    "husky": "^8.0.3"
   }
 }
