@@ -1,0 +1,28 @@
+{
+  "projectName": "remember-me-service",
+  "projectOwner": "aromko",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "eslint",
+  "contributors": [
+    {
+      "login": "aromko",
+      "name": "Marcel Köhler",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77496890?v=4",
+      "profile": "https://github.com/aromko",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "maintenance"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
