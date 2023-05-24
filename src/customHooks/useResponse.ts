@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const useResponse = () => {
   const initialState = { userTelegramId: 0, errorMessage: '' };

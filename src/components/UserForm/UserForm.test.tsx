@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserForm } from './UserForm';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 test('allows to set custom width', () => {
   render(<UserForm />);

@@ -29,7 +29,7 @@ export const ReminderForm = () => {
 
   const saveReminder = event => {
     event.preventDefault();
-    console.log(telegramId);
+
     fetch('/api/reminder', {
       method: 'POST',
       body: JSON.stringify({
@@ -95,7 +95,7 @@ export const ReminderForm = () => {
                   label="Messae type"
                   defaultSelectedKey="TELEGRAM"
                   onChange={selectedKey => {
-                    setMessageType(selectedKey);
+                    setMessageType(selectedKey as string);
                   }}
                 >
                   <Select.Option key={'TELEGRAM'}>Telegram</Select.Option>
@@ -107,7 +107,7 @@ export const ReminderForm = () => {
                   label="User"
                   placeholder="Please select a user"
                   onChange={selectedKey => {
-                    setTelegramId(selectedKey.split('_'));
+                    setTelegramId((selectedKey as string).split('_'));
                   }}
                 >
                   {users.length !== 0
