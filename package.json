@@ -12,11 +12,6 @@
     "test:ci": "jest --config jest.config.js --coverage --ci --no-cache",
     "precommit": "pnpm run lint && pnpm run format && pnpm run test"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pnpm run precommit"
-    }
-  },
   "dependencies": {
     "@emotion/react": "^11.10.8",
     "@emotion/styled": "^11.10.8",
