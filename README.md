@@ -1,6 +1,9 @@
 # [RMS] Remember me service
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 The remind me service, RMS for short, contains a small web application that allows you to manage reminders. These reminders are sent via push messages to Telegram (in the future, other interfaces will also be connected).
@@ -73,6 +76,23 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/aromko"><img src="https://avatars.githubusercontent.com/u/77496890?v=4?s=100" width="100px;" alt="Marcel Köhler"/><br /><sub><b>Marcel Köhler</b></sub></a><br /><a href="https://github.com/aromko/remember-me-service/commits?author=aromko" title="Code">💻</a> <a href="#design-aromko" title="Design">🎨</a> <a href="https://github.com/aromko/remember-me-service/commits?author=aromko" title="Documentation">📖</a> <a href="#maintenance-aromko" title="Maintenance">🚧</a></td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td align="center" size="13px" colspan="7">
+        <img src="https://raw.githubusercontent.com/all-contributors/all-contributors-cli/1b8533af435da9854653492b1327a23a4dbd0a10/assets/logo-small.svg">
+          <a href="https://all-contributors.js.org/docs/en/bot/usage">Add your contributions</a>
+        </img>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
