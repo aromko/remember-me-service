@@ -9,7 +9,7 @@ test('allows to set custom width', () => {
 
   const label = screen.getByLabelText('Name:');
   const input = screen.getByRole('textbox', { name: 'Name:' });
-  const error = screen.getByText('Please enter a name.');
+  const error = screen.getByText('The field is required. Please enter a name.');
 
   expect(label).toBeInTheDocument();
   expect(input).toBeInTheDocument();

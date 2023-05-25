@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import theme from '@marigold/theme-b2b';
 import {
   Button,
+  Container,
   FieldGroup,
   Headline,
   MarigoldProvider,
@@ -12,18 +13,26 @@ import {
   TextField,
 } from '@marigold/components';
 import { useResponse } from '../../customHooks';
+import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+
+interface IFormInputs {
+  name: string;
+}
 
 export const UserForm = () => {
   const router = useRouter();
   const message = useResponse();
 
-  const registerUser = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  useEffect(() => {
+    if (message.response.errorMessage.length > 0) {
+      setTimeout(() => {
+        message.resetResponse();
+      }, 10000);
+    }
+  }, [message]);
 
-    const nameInput = event.currentTarget.elements.namedItem(
-      'name'
-    ) as HTMLInputElement;
-    const name = nameInput.value;
+  const registerUser: SubmitHandler<IFormInputs> = data => {
+    const name = data.name;
 
     fetch('/api/telegram', {
       body: JSON.stringify({
@@ -61,29 +70,52 @@ export const UserForm = () => {
       });
   };
 
+  const {
+    control,
+    handleSubmit,
+    formState: { isValid },
+  } = useForm({
+    defaultValues: {
+      name: '',
+    },
+  });
+
   return (
     <MarigoldProvider theme={theme}>
-      <Stack space="large" alignX="center">
-        <Stack space="xsmall">
+      <Container size="large" align="center">
+        <Stack space="medium">
           <FieldGroup labelWidth="medium">
             <Headline level="2">User Registration</Headline>
-            <form onSubmit={registerUser}>
-              <Stack space="medium">
-                <TextField
-                  id="name"
-                  name="name"
-                  label="Name:"
-                  required
-                  placeholder="Name"
-                  type="text"
-                  description="Please enter a name."
-                  onChange={message.resetResponse}
-                />
-              </Stack>
-              <Stack alignX="right">
-                <Button variant="primary" size="small" type="submit">
-                  Register
-                </Button>
+            <form onSubmit={handleSubmit(registerUser)}>
+              <Stack space="small">
+                <Stack>
+                  <Controller
+                    name="name"
+                    control={control}
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        label="Name:"
+                        required
+                        type="text"
+                        description="Please enter a name."
+                        error={field.value.length === 0}
+                        errorMessage="The field is required. Please enter a name."
+                      />
+                    )}
+                  />
+                </Stack>
+                <Stack alignX="right">
+                  <Button
+                    variant="primary"
+                    size="small"
+                    type="submit"
+                    disabled={!isValid}
+                  >
+                    Register
+                  </Button>
+                </Stack>
               </Stack>
             </form>
             <Stack alignX="center">
@@ -95,7 +127,7 @@ export const UserForm = () => {
             </Stack>
           </FieldGroup>
         </Stack>
-      </Stack>
+      </Container>
     </MarigoldProvider>
   );
 };
