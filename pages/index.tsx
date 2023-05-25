@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import {
   Button,
   Divider,
+  extendTheme,
   Header,
   Headline,
   Inline,
@@ -36,8 +37,17 @@ export default function Home() {
     router.push(router);
   }, []);
 
+  //Fix: checkbox are now shown in data table with marigold
+  const customTheme = extendTheme(theme, {
+    root: {
+      input: {
+        appearance: 'auto',
+      },
+    },
+  });
+
   return (
-    <MarigoldProvider theme={theme}>
+    <MarigoldProvider theme={customTheme}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <title>Remember-me-service</title>
