@@ -23,8 +23,8 @@ importers:
         specifier: ^0.3.1
         version: 0.3.1(prettier@2.8.7)
       '@marigold/theme-b2b':
-        specifier: ^23.0.0
-        version: 23.0.0(@marigold/components@5.5.0)
+        specifier: ^24.0.0
+        version: 24.0.0(@marigold/components@5.5.0)
       '@testing-library/dom':
         specifier: ^9.2.0
         version: 9.2.0
@@ -2300,10 +2300,10 @@ packages:
       - '@types/react'
     dev: false
 
-  /@marigold/theme-b2b@23.0.0(@marigold/components@5.5.0):
-    resolution: {integrity: sha512-PqsZ14GVD8vPcM41G8kTFWstQzZ9gf9jzrhHfMZCqAkr/vSdfemR1VDbtMNt1I7ty17ecv8+AJo8mWux6dG24w==}
+  /@marigold/theme-b2b@24.0.0(@marigold/components@5.5.0):
+    resolution: {integrity: sha512-ssQBSf0V4dOcGujIP4xs6IrIiwfT+BQ7ZstFz/2N3dlKX1CQ815qqmIeXmDx7Ks0ilRjp5DRiumjDqzm9HEK3Q==}
     peerDependencies:
-      '@marigold/components': 5.5.0
+      '@marigold/components': 5.6.0
     dependencies:
       '@marigold/components': 5.5.0(@types/react@18.2.1)(react-dom@18.2.0)(react@18.2.0)
     dev: false
