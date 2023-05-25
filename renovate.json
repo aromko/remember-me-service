@@ -1,6 +1,5 @@
 {
   "extends": ["config:base"],
-  "schedule": ["before 6:00am"],
   "platform": "github",
   "packageRules": [
     {
