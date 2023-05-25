@@ -20,6 +20,8 @@ import React, { useEffect, useState } from 'react';
 import process from 'next/dist/build/webpack/loaders/resolve-url-loader/lib/postcss';
 import { DataTableX } from '../src/components';
 
+// @ts-ignore
+const appVersion = process.env.NEXT_PUBLIC_APP_VERSION;
 const sendRememberMessageToBot = () => {
   fetch(
     // @ts-ignore
@@ -50,7 +52,7 @@ export default function Home() {
     <MarigoldProvider theme={customTheme}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>Remember-me-service</title>
+        <title>Remember-me-service x</title>
       </Head>
 
       <Stack>
@@ -91,7 +93,7 @@ export default function Home() {
             </Button>
           </Inline>
         </Stack>
-        <Text>Current Version: alpha-v0.2</Text>
+        <Text>Current Version: {appVersion}</Text>
       </Stack>
     </MarigoldProvider>
   );
