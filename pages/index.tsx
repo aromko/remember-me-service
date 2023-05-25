@@ -52,7 +52,7 @@ export default function Home() {
     <MarigoldProvider theme={customTheme}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
-        <title>Remember-me-service</title>
+        <title>Remember-me-service x</title>
       </Head>
 
       <Stack>

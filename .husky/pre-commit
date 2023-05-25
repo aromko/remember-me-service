@@ -1,2 +1,3 @@
 #!/bin/sh
 pnpm run precommit
+node scripts/update-version.js
