@@ -17,6 +17,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 interface User {
   _id: string;
   name: string;
+  telegramId: string;
 }
 
 interface IFormInputs {
@@ -50,7 +51,7 @@ export const ReminderForm: React.FC = () => {
         description: data.description,
         executionAt: data.executionAt,
         messageType: data.messageType,
-        telegramId: splitTelegramId[0],
+        telegramId: splitTelegramId[2],
         userName: splitTelegramId[1],
       }),
     });
@@ -167,7 +168,7 @@ export const ReminderForm: React.FC = () => {
                       >
                         {users.map(item => (
                           <Select.Option
-                            key={`${item._id}_${item.name}`}
+                            key={`${item._id}_${item.name}_${item.telegramId}`}
                             textValue="test"
                           >
                             {item.name}
