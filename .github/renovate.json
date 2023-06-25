@@ -1,5 +1,10 @@
 {
-  "extends": ["config:base"],
+  "extends": [
+    "config:base",
+    ":disableDependencyDashboard",
+    ":semanticCommitTypeAll(chore)",
+    ":rebaseStalePrs"
+  ],
   "platform": "github",
   "packageRules": [
     {
@@ -63,5 +68,6 @@
       "labels": ["compatibility"],
       "matchPackagePatterns": ["@babel/*", "core-js"]
     }
-  ]
+  ],
+  "timezone": "Europe/Berlin"
 }
