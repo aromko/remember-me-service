@@ -6,6 +6,8 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
+![build](https://github.com/aromko/remember-me-service/blob/feature/add-codecov/.github/workflows/main.yml/badge.svg)
+
 The remind me service, RMS for short, contains a small web application that allows you to manage reminders. These reminders are sent via push messages to Telegram (in the future, other interfaces will also be connected).
 <br/><br/>
 
