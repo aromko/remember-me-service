@@ -2,9 +2,11 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![build][build-badge]][build]
+![next-version]
+![mongodb-version]
+[![codecov](https://codecov.io/github/aromko/remember-me-service/branch/main/graph/badge.svg?token=O57HHEVT8D)](https://codecov.io/github/aromko/remember-me-service)
 
 The remind me service, RMS for short, contains a small web application that allows you to manage reminders. These reminders are sent via push messages to Telegram (in the future, other interfaces will also be connected).
 <br/><br/>
@@ -99,3 +101,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+<!-- LINKS + BADGES -->
+
+[build]: https://github.com/aromko/remember-me-service/actions/workflows/main.yml
+[build-badge]: https://github.com/aromko/remember-me-service/actions/workflows/main.yml/badge.svg
+[next-badge]: https://img.shields.io/badge/--000000?logo=nextdotjs&logoColor=white&style=flat
+[next-version]: https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/aromko/remember-me-service/main/package.json&query=$.dependencies.next&label=next
+[mongodb-version]: https://img.shields.io/badge/dynamic/json?url=https://raw.githubusercontent.com/aromko/remember-me-service/main/package.json&query=$.dependencies.mongodb&label=mongodb
