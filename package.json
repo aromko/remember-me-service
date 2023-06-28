@@ -37,7 +37,7 @@
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "styled-components": "^5.3.11",
+    "styled-components": "^6.0.0",
     "typescript": "^5.0.4"
   },
   "devDependencies": {
