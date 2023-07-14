@@ -1,12 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../../../lib/mongodb';
+import { connectToDatabase } from '../../../utils/mongodb';
+import { Db } from 'mongodb';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const client = await clientPromise;
-  const db = client.db('myFirstDatabase');
+  let db: Db;
+
+  if (process.env.NODE_ENV === 'test') {
+    db = (global as any).__DB__;
+  } else {
+    db = await connectToDatabase();
+  }
 
   switch (req.method) {
     case 'POST':
@@ -22,7 +28,8 @@ export default async function handler(
       break;
     case 'GET':
       const users = await db.collection('User').find({}).toArray();
-      res.json({ status: 200, data: users });
+      res.statusCode = 200;
+      res.send({ data: users });
       break;
   }
 }

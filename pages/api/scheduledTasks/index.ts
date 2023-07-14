@@ -1,12 +1,18 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../../../lib/mongodb';
+import { connectToDatabase } from '../../../utils/mongodb';
+import { Db } from 'mongodb';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const client = await clientPromise;
-  const db = client.db('myFirstDatabase');
+  let db: Db;
+
+  if (process.env.NODE_ENV === 'test') {
+    db = (global as any).__DB__;
+  } else {
+    db = await connectToDatabase();
+  }
 
   try {
     const currentDate = new Date().toISOString().split('T')[0];

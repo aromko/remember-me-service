@@ -1,13 +1,19 @@
-import clientPromise from '../../../lib/mongodb';
-import { ObjectId } from 'mongodb';
+import { connectToDatabase } from '../../../utils/mongodb';
+import { Db, ObjectId } from 'mongodb';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const client = await clientPromise;
-  const db = client.db('myFirstDatabase');
+  let db: Db;
+
+  if (process.env.NODE_ENV === 'test') {
+    db = (global as any).__DB__;
+  } else {
+    db = await connectToDatabase();
+  }
+
   const tableName = 'Reminder';
   switch (req.method) {
     case 'POST':
