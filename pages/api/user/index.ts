@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { connectToDatabase } from '../../../utils/mongodb';
 import { Db } from 'mongodb';
 
 export default async function handler(
@@ -8,11 +7,7 @@ export default async function handler(
 ): Promise<void> {
   let db: Db;
 
-  if (process.env.NODE_ENV === 'test') {
-    db = (global as any).__DB__;
-  } else {
-    db = await connectToDatabase();
-  }
+  db = (global as any).__DB__;
 
   switch (req.method) {
     case 'POST':

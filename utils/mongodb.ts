@@ -1,17 +1,31 @@
-import { MongoClient } from 'mongodb';
-import * as process from 'process';
+import { Db, MongoClient } from 'mongodb';
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
-export async function connectToDatabase(
-  mongoUri: string = process.env.MONGODB_URI as string
-) {
-  const client = new MongoClient(mongoUri);
+let mongoServer: MongoMemoryServer;
+let client: MongoClient;
+
+export async function connectToDatabase() {
+  let db;
+
+  if (process.env.NODE_ENV === 'test') {
+    mongoServer = await MongoMemoryServer.create();
+    const mongoUri = mongoServer.getUri();
+    client = new MongoClient(mongoUri);
+  } else {
+    client = new MongoClient(process.env.MONGODB_URI as string);
+  }
 
   try {
     await client.connect();
-
-    return client.db();
+    db = client.db();
+    (global as any).__DB__ = db as Db;
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
     throw error;
   }
+}
+
+export async function disconnectFromDatabase() {
+  await mongoServer.stop();
+  await client.close();
 }
