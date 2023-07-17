@@ -41,6 +41,11 @@ describe('/api/user', () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(JSON.parse(res._getData())).toEqual({ errorMessage: '' });
+
+    const usersCollection = (global as any).__DB__.collection('User');
+    const users = await usersCollection.find({}).toArray();
+
+    expect(users).toHaveLength(3);
   });
 });
 

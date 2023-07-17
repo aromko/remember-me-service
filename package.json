@@ -9,8 +9,9 @@
     "format": "prettier --write \"**/*\"",
     "test": "jest --config jest.config.js --runInBand && jest --config jest.node.config.js --runInBand",
     "test:coverage": "jest --config jest.config.js --coverage --coverageReporters html && jest --config jest.node.config.js --coverage --coverageReporters html",
-    "test:ci": "jest --config jest.config.js --coverage --ci --no-cache && jest --config jest.node.config.js --coverage --ci --no-cache",
-    "precommit": "pnpm run lint && pnpm run format && pnpm run test && tsc"
+    "test:ci": "jest --config jest.config.js --coverage --ci --no-cache && jest --config jest.node.config.js --coverage --ci --no-cache && pnpm merge-coverage",
+    "precommit": "pnpm run lint && pnpm run format && pnpm run test && tsc",
+    "merge-coverage": "istanbul-merge --out coverage/reports/merged/coverage-final.json coverage/reports/jsdom/coverage-final.json coverage/reports/node/coverage-final.json"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -45,6 +46,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@types/testing-library__jest-dom": "^5.14.6",
     "husky": "^8.0.3",
+    "istanbul-merge": "^2.0.0",
     "mongodb-memory-server": "^8.13.0",
     "node-mocks-http": "^1.12.2"
   }
