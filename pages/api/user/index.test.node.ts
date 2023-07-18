@@ -47,6 +47,31 @@ describe('/api/user', () => {
 
     expect(users).toHaveLength(3);
   });
+
+  test('adding a user should fail', async () => {
+    const { req, res } = createMocks({
+      method: 'POST',
+      body: Buffer.from(
+        JSON.stringify({
+          namex: 'bigshow',
+          userTelegramId: 'wrestlemania',
+        })
+      ),
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(JSON.parse(res._getData())).toEqual({
+      errorMessage:
+        'Something went wrong. Error: Name, telegramId are required fields.',
+    });
+
+    const usersCollection = (global as any).__DB__.collection('User');
+    const users = await usersCollection.find({}).toArray();
+
+    expect(users).toHaveLength(2);
+  });
 });
 
 async function insertUserDummyData() {
