@@ -1,6 +1,10 @@
 import { createMocks } from 'node-mocks-http';
 import handler from './index';
 
+const userDummyData = [
+  { _id: 10, name: 'john_doe', telegramId: 1234567 },
+  { _id: 100, name: 'jane_foster', telegramId: 987654 },
+];
 beforeEach(async () => {
   await insertUserDummyData();
 });
@@ -19,10 +23,7 @@ describe('/api/user', () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(res._getData()).toEqual({
-      data: [
-        { _id: 10, name: 'john_doe', telegramId: 1234567 },
-        { _id: 100, name: 'jane_foster', telegramId: 987654 },
-      ],
+      data: userDummyData,
     });
   });
 
@@ -76,10 +77,7 @@ describe('/api/user', () => {
 
 async function insertUserDummyData() {
   const usersCollection = (global as any).__DB__.collection('User');
-  await usersCollection.insertMany([
-    { _id: 10, name: 'john_doe', telegramId: 1234567 },
-    { _id: 100, name: 'jane_foster', telegramId: 987654 },
-  ]);
+  await usersCollection.insertMany(userDummyData);
 }
 async function clearUserDummyData() {
   const usersCollection = (global as any).__DB__.collection('User');
