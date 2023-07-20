@@ -1,16 +1,17 @@
 import { createMocks } from 'node-mocks-http';
 import handler from './index';
+import { clearDummyData, insertDummyData } from '../../../utils/testHelper';
 
 const userDummyData = [
   { _id: 10, name: 'john_doe', telegramId: 1234567 },
   { _id: 100, name: 'jane_foster', telegramId: 987654 },
 ];
 beforeEach(async () => {
-  await insertUserDummyData();
+  await insertDummyData('User', userDummyData);
 });
 
 afterEach(async () => {
-  await clearUserDummyData();
+  await clearDummyData('User');
 });
 
 describe('/api/user', () => {
@@ -24,6 +25,7 @@ describe('/api/user', () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getData()).toEqual({
       data: userDummyData,
+      errorMessage: null,
     });
   });
 
@@ -41,7 +43,7 @@ describe('/api/user', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(JSON.parse(res._getData())).toEqual({ errorMessage: '' });
+    expect(res._getData()).toEqual({ data: null, errorMessage: '' });
 
     const usersCollection = (global as any).__DB__.collection('User');
     const users = await usersCollection.find({}).toArray();
@@ -63,7 +65,8 @@ describe('/api/user', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(JSON.parse(res._getData())).toEqual({
+    expect(res._getData()).toEqual({
+      data: null,
       errorMessage:
         'Something went wrong. Error: Name, telegramId are required fields.',
     });
@@ -74,12 +77,3 @@ describe('/api/user', () => {
     expect(users).toHaveLength(2);
   });
 });
-
-async function insertUserDummyData() {
-  const usersCollection = (global as any).__DB__.collection('User');
-  await usersCollection.insertMany(userDummyData);
-}
-async function clearUserDummyData() {
-  const usersCollection = (global as any).__DB__.collection('User');
-  await usersCollection.deleteMany({});
-}

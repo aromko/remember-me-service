@@ -12,6 +12,7 @@ export async function connectToDatabase() {
     const mongoUri = mongoServer.getUri();
     client = new MongoClient(mongoUri);
   } else {
+    console.log('XXXX' + process.env.MONGODB_URI);
     client = new MongoClient(process.env.MONGODB_URI as string);
   }
 

@@ -1,5 +1,6 @@
 import { createMocks } from 'node-mocks-http';
 import handler from './index';
+import { clearDummyData, insertDummyData } from '../../../utils/testHelper';
 
 const reminderDummyData = [
   {
@@ -14,11 +15,11 @@ const reminderDummyData = [
 ];
 
 beforeEach(async () => {
-  await insertReminderDummyData();
+  await insertDummyData('Reminder', reminderDummyData);
 });
 
 afterEach(async () => {
-  await clearReminderDummyData();
+  await clearDummyData('Reminder');
 });
 
 describe('/api/reminder', () => {
@@ -32,6 +33,7 @@ describe('/api/reminder', () => {
     expect(res._getStatusCode()).toBe(200);
     expect(res._getData()).toEqual({
       data: reminderDummyData,
+      errorMessage: null,
     });
   });
 
@@ -54,7 +56,7 @@ describe('/api/reminder', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getData()).toEqual({ errorMessage: '' });
+    expect(res._getData()).toEqual({ data: null, errorMessage: '' });
 
     const reminderCollection = (global as any).__DB__.collection('Reminder');
     const reminders = await reminderCollection.find({}).toArray();
@@ -80,7 +82,8 @@ describe('/api/reminder', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(JSON.parse(res._getData())).toEqual({
+    expect(res._getData()).toEqual({
+      data: null,
       errorMessage:
         'Something went wrong. Error: Name, description, executionAt, messageType and telegramId are required fields.',
     });
@@ -106,7 +109,7 @@ describe('/api/reminder', () => {
     await handler(req, res);
 
     expect(res._getStatusCode()).toBe(200);
-    expect(res._getData()).toEqual({ errorMessage: '' });
+    expect(res._getData()).toEqual({ data: null, errorMessage: '' });
 
     const reminderCollection = (global as any).__DB__.collection('Reminder');
     const reminders = await reminderCollection.find({}).toArray();
@@ -128,6 +131,7 @@ describe('/api/reminder', () => {
 
     expect(res._getStatusCode()).toBe(200);
     expect(res._getData()).toEqual({
+      data: null,
       errorMessage:
         "Something went wrong. Data couldn't be deleted. TypeError: bodyArray is not iterable",
     });
@@ -138,13 +142,3 @@ describe('/api/reminder', () => {
     expect(reminders).toHaveLength(1);
   });
 });
-
-async function insertReminderDummyData() {
-  const reminderCollection = (global as any).__DB__.collection('Reminder');
-  await reminderCollection.insertMany(reminderDummyData);
-}
-
-async function clearReminderDummyData() {
-  const reminderCollection = (global as any).__DB__.collection('Reminder');
-  await reminderCollection.deleteMany({});
-}
