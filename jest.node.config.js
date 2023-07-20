@@ -5,7 +5,9 @@ module.exports = createConfig({
   // It cannot be resolved, because there exists several different files, or packages,
   // that provide a module for that particular name and platform. The platform is generic (no extension).
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
-  testEnvironment: 'jsdom',
-  collectCoverageFrom: ['!**/*.test.node.ts'],
-  coverageDirectory: 'coverage/reports/jsdom',
+  testMatch: ['!**/*.test.{ts,tsx}', '**/*.test.node.{ts,tsx}'],
+  testEnvironment: 'node',
+  setupFilesAfterEnv: ['<rootDir>/test-setup.js'],
+  collectCoverageFrom: ['**/pages/api/*/*.{ts,tsx}'],
+  coverageDirectory: 'coverage/reports/node',
 });

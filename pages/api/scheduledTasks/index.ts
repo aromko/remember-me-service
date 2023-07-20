@@ -1,12 +1,13 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import clientPromise from '../../../lib/mongodb';
+import { Db } from 'mongodb';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  const client = await clientPromise;
-  const db = client.db('myFirstDatabase');
+  let db: Db;
+
+  db = (global as any).__DB__;
 
   try {
     const currentDate = new Date().toISOString().split('T')[0];
