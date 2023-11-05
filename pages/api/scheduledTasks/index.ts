@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Db, Document } from 'mongodb';
 import { setResponse } from '../../../utils/responseUtils';
-import { connectToDatabase } from '../../../utils/mongodb';
+import { connectAndGetDb } from '../../../utils/mongodb';
 
 const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
 
@@ -24,10 +24,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> {
-  if (process.env.NODE_ENV !== 'test') {
-    await connectToDatabase();
-  }
-  const db: Db = (global as any).__DB__;
+  const db = await connectAndGetDb();
 
   const currentDate: string = new Date().toISOString().split('T')[0];
 

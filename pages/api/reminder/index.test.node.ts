@@ -1,6 +1,7 @@
 import { createMocks } from 'node-mocks-http';
 import handler from './index';
-import { clearDummyData, insertDummyData } from '../../../utils/testHelper';
+import { Db } from 'mongodb';
+import { clearDummyData, insertDummyData } from '../../../utils';
 
 const reminderDummyData = [
   {
@@ -34,6 +35,58 @@ describe('/api/reminder', () => {
     expect(res._getData()).toEqual({
       data: reminderDummyData,
       errorMessage: null,
+    });
+  });
+
+  test('getting reminders should fail', async () => {
+    const { req, res } = createMocks({
+      method: 'GET',
+    });
+
+    const mockDb: Partial<Db> = {
+      collection: jest.fn(() => {
+        throw new Error('MongoDB error');
+      }),
+    };
+
+    const originalGlobalDB = (global as any).__DB__;
+    (global as any).__DB__ = mockDb as Db;
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getData()).toEqual({
+      data: null,
+      errorMessage: 'Something went wrong. Error: MongoDB error',
+    });
+    (global as any).__DB__ = originalGlobalDB;
+  });
+
+  test('using wrong method should fail', async () => {
+    const { req, res } = createMocks({
+      method: 'PATCH',
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(405);
+    expect(res._getData()).toEqual({
+      data: null,
+      errorMessage: 'Method not allowed',
+    });
+  });
+
+  test('no db connection should fail', async () => {
+    const { req, res } = createMocks({
+      method: 'GET',
+    });
+
+    await handler(req, res);
+
+    expect(res._getStatusCode()).toBe(200);
+    expect(res._getData()).toEqual({
+      data: null,
+      errorMessage: 'Something went wrong. Error: Database connection error',
     });
   });
 

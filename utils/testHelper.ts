@@ -1,3 +1,5 @@
+import { Db } from 'mongodb';
+
 export async function insertDummyData(
   tableName: string,
   dummyData: Array<Object>

@@ -29,3 +29,10 @@ export async function disconnectFromDatabase() {
   await mongoServer.stop();
   await client.close();
 }
+
+export async function connectAndGetDb() {
+  if (process.env.NODE_ENV !== 'test') {
+    await connectToDatabase();
+  }
+  return (global as any).__DB__;
+}

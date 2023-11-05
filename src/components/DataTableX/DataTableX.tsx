@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import DataTable from 'react-data-table-component';
+import DataTable, { TableColumn } from 'react-data-table-component';
 import { Button } from '@marigold/components';
 import { useRouter } from 'next/router';
 
@@ -13,7 +13,7 @@ interface Reminder {
   telegramId: string;
 }
 
-const columns = [
+const columns: TableColumn<Reminder>[] = [
   {
     name: 'Name',
     selector: (row: Reminder) => row.name,
