@@ -8,6 +8,10 @@
 ![mongodb-version]
 [![codecov](https://codecov.io/github/aromko/remember-me-service/branch/main/graph/badge.svg?token=O57HHEVT8D)](https://codecov.io/github/aromko/remember-me-service)
 
+<img width="608" alt="Bildschirmfoto 2024-01-14 um 14 40 47" src="https://github.com/aromko/remember-me-service/assets/77496890/9fb5e128-5cac-4daa-aaa7-8b48091094dd">
+<img width="381" alt="Bildschirmfoto 2024-01-14 um 14 47 01" src="https://github.com/aromko/remember-me-service/assets/77496890/3f3d4f92-8e9b-4b73-9dd3-699f116e19c4">
+
+
 The remind me service, RMS for short, contains a small web application that allows you to manage reminders. These reminders are sent via push messages to Telegram (in the future, other interfaces will also be connected).
 <br/><br/>
 
