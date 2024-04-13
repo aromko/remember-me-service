@@ -10,13 +10,13 @@ importers:
     dependencies:
       '@emotion/react':
         specifier: ^11.11.0
-        version: 11.11.4(@types/react@18.2.77)(react@18.2.0)
+        version: 11.11.4(@types/react@18.2.78)(react@18.2.0)
       '@emotion/styled':
         specifier: ^11.11.0
-        version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.77)(react@18.2.0)
+        version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.2.78)(react@18.2.0)
       '@marigold/components':
         specifier: ^5.6.0
-        version: 5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
+        version: 5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
       '@marigold/eslint-config':
         specifier: ^0.4.10
         version: 0.4.10(eslint@8.57.0)(jest@29.7.0)(typescript@5.4.5)
@@ -46,7 +46,7 @@ importers:
         version: 18.19.31
       '@types/react':
         specifier: ^18.2.7
-        version: 18.2.77
+        version: 18.2.78
       '@types/react-dom':
         specifier: ^18.2.4
         version: 18.2.25
@@ -70,7 +70,7 @@ importers:
         version: 18.2.0
       react-bootstrap:
         specifier: ^2.7.4
-        version: 2.10.2(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.10.2(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
       react-data-table-component:
         specifier: ^7.5.3
         version: 7.6.2(react@18.2.0)(styled-components@6.1.8)
@@ -1718,7 +1718,7 @@ packages:
     resolution: {integrity: sha512-W2P2c/VRW1/1tLox0mVUalvnWXxavmv/Oum2aPsRcoDJuob75FC3Y8FbpfLwUegRcxINtGUMPq0tFCvYNTBXNA==}
     dev: false
 
-  /@emotion/react@11.10.6(@types/react@18.2.77)(react@18.2.0):
+  /@emotion/react@11.10.6(@types/react@18.2.78)(react@18.2.0):
     resolution: {integrity: sha512-6HT8jBmcSkfzO7mc+N1L9uwvOnlcGoix8Zn7srt+9ga0MjREo6lRpuVX0kzo6Jp6oTqDhREOFsygN6Ew4fEQbw==}
     peerDependencies:
       '@types/react': '*'
@@ -1734,12 +1734,12 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: false
 
-  /@emotion/react@11.11.4(@types/react@18.2.77)(react@18.2.0):
+  /@emotion/react@11.11.4(@types/react@18.2.78)(react@18.2.0):
     resolution: {integrity: sha512-t8AjMlF0gHpvvxk5mAtCqR4vmxiGHCeJBaQO6gncUSdklELOgtwjerNY2yuJNfwnc6vi16U/+uMF+afIawJ9iw==}
     peerDependencies:
       '@types/react': '*'
@@ -1755,7 +1755,7 @@ packages:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
       '@emotion/weak-memoize': 0.3.1
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
     dev: false
@@ -1784,7 +1784,7 @@ packages:
     resolution: {integrity: sha512-0QBtGvaqtWi+nx6doRwDdBIzhNdZrXUppvTM4dtZZWEGTXL/XE/yJxLMGlDT1Gt+UHH5IX1n+jkXyytE/av7OA==}
     dev: false
 
-  /@emotion/styled@11.11.5(@emotion/react@11.11.4)(@types/react@18.2.77)(react@18.2.0):
+  /@emotion/styled@11.11.5(@emotion/react@11.11.4)(@types/react@18.2.78)(react@18.2.0):
     resolution: {integrity: sha512-/ZjjnaNKvuMPxcIiUkf/9SHoG4Q196DRl1w82hQ3WCsjo1IUR8uaGWrC6a87CrYAW0Kb/pK7hk8BnLgLRi9KoQ==}
     peerDependencies:
       '@emotion/react': ^11.0.0-rc.0
@@ -1797,11 +1797,11 @@ packages:
       '@babel/runtime': 7.24.1
       '@emotion/babel-plugin': 11.11.0
       '@emotion/is-prop-valid': 1.2.2
-      '@emotion/react': 11.11.4(@types/react@18.2.77)(react@18.2.0)
+      '@emotion/react': 11.11.4(@types/react@18.2.78)(react@18.2.0)
       '@emotion/serialize': 1.1.4
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.1(react@18.2.0)
       '@emotion/utils': 1.2.1
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       react: 18.2.0
     dev: false
 
@@ -2248,16 +2248,16 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: false
 
-  /@marigold/components@5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0):
+  /@marigold/components@5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-U8HjhgqqjP/MrgJl0SLwiAlRCLdy9PTBve2tV2buFLbJVqAzCkNqhyEfzAEyU6Z5XYgv9FYn6KuTP9J63fYUWg==}
     peerDependencies:
       react: 17.x || 18.x
       react-dom: 17.x || 18.x
     dependencies:
-      '@marigold/icons': 1.2.5(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
-      '@marigold/system': 5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
+      '@marigold/icons': 1.2.5(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
+      '@marigold/system': 5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
       '@marigold/tokens': 3.1.0
-      '@marigold/types': 1.0.1(@types/react@18.2.77)
+      '@marigold/types': 1.0.1(@types/react@18.2.78)
       '@react-aria/accordion': 3.0.0-alpha.17(react@18.2.0)
       '@react-aria/autocomplete': 3.0.0-alpha.16(react-dom@18.2.0)(react@18.2.0)
       '@react-aria/button': 3.7.1(react@18.2.0)
@@ -2351,12 +2351,12 @@ packages:
       - supports-color
     dev: false
 
-  /@marigold/icons@1.2.5(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0):
+  /@marigold/icons@1.2.5(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-5g3oivlXI8RPQvm7N8k0AW6ycsB/Onhay8dijCSHIkCWciVM6vFgiDzmfRf0ZrhAOPaUv9iSKWX+RcgBlceKKw==}
     peerDependencies:
       react: 17.x || 18.x
     dependencies:
-      '@marigold/system': 5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
+      '@marigold/system': 5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
     transitivePeerDependencies:
       - '@types/react'
@@ -2396,14 +2396,14 @@ packages:
       prettier: 2.8.8
     dev: false
 
-  /@marigold/system@5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0):
+  /@marigold/system@5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-ku2BNw0JPP8+8Bv/opMfePALEowRQ97SZS1Pj5Arab7zvaSzuE40ueaqfeSrhALUq9UPof16tswdi17lN/HXkw==}
     peerDependencies:
       react: 16.x || 17.x || 18.x
       react-dom: 16.x || 17.x || 18.x
     dependencies:
-      '@emotion/react': 11.10.6(@types/react@18.2.77)(react@18.2.0)
-      '@marigold/types': 1.0.1(@types/react@18.2.77)
+      '@emotion/react': 11.10.6(@types/react@18.2.78)(react@18.2.0)
+      '@marigold/types': 1.0.1(@types/react@18.2.78)
       '@theme-ui/css': 0.15.7(@emotion/react@11.10.6)
       csstype: 3.1.2
       deepmerge: 4.3.1
@@ -2419,19 +2419,19 @@ packages:
     peerDependencies:
       '@marigold/components': 5.6.0
     dependencies:
-      '@marigold/components': 5.6.0(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0)
+      '@marigold/components': 5.6.0(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0)
     dev: false
 
   /@marigold/tokens@3.1.0:
     resolution: {integrity: sha512-Rj44UMCFwXCh7JWmce/jyc1ZRl/gO2aNoyqKLQkNA/bZQxYWz/N0r9+K5bcZuxVELwccullvfwlSMr9N/NONzg==}
     dev: false
 
-  /@marigold/types@1.0.1(@types/react@18.2.77):
+  /@marigold/types@1.0.1(@types/react@18.2.78):
     resolution: {integrity: sha512-leDoUWY8jfoJK43sSk/V+fqQgOoLx6NEW1PgS+JVSGTa2rugMezUbyO5YAXFIkTIe7ysqW5EHfdDRh/tHrUUyg==}
     peerDependencies:
       '@types/react': 18.x
     dependencies:
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       type-fest: 3.7.1
     dev: false
 
@@ -4236,7 +4236,7 @@ packages:
     peerDependencies:
       '@emotion/react': ^11
     dependencies:
-      '@emotion/react': 11.10.6(@types/react@18.2.77)(react@18.2.0)
+      '@emotion/react': 11.10.6(@types/react@18.2.78)(react@18.2.0)
       csstype: 3.1.2
     dev: false
 
@@ -4362,17 +4362,17 @@ packages:
   /@types/react-dom@18.2.25:
     resolution: {integrity: sha512-o/V48vf4MQh7juIKZU2QGDfli6p1+OOi5oXx36Hffpc9adsHeXjVp8rHuPkjd8VT8sOJ2Zp05HR7CdpGTIUFUA==}
     dependencies:
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
     dev: false
 
   /@types/react-transition-group@4.4.10:
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==}
     dependencies:
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
     dev: false
 
-  /@types/react@18.2.77:
-    resolution: {integrity: sha512-CUT9KUUF+HytDM7WiXKLF9qUSg4tGImwy4FXTlfEDPEkkNUzJ7rVFolYweJ9fS1ljoIaP7M7Rdjc5eUm/Yu5AA==}
+  /@types/react@18.2.78:
+    resolution: {integrity: sha512-qOwdPnnitQY4xKlKayt42q5W5UQrSHjgoXNVEtxeqdITJ99k4VXJOP3vt8Rkm9HmgJpH50UNU+rlqfkfWOqp0A==}
     dependencies:
       '@types/prop-types': 15.7.12
       csstype: 3.1.3
@@ -7966,7 +7966,7 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: false
 
-  /react-bootstrap@2.10.2(@types/react@18.2.77)(react-dom@18.2.0)(react@18.2.0):
+  /react-bootstrap@2.10.2(@types/react@18.2.78)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-UvB7mRqQjivdZNxJNEA2yOQRB7L9N43nBnKc33K47+cH90/ujmnMwatTCwQLu83gLhrzAl8fsa6Lqig/KLghaA==}
     peerDependencies:
       '@types/react': '>=16.14.8'
@@ -7979,7 +7979,7 @@ packages:
       '@babel/runtime': 7.24.0
       '@restart/hooks': 0.4.16(react@18.2.0)
       '@restart/ui': 1.6.8(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       '@types/react-transition-group': 4.4.10
       classnames: 2.5.1
       dom-helpers: 5.2.1
@@ -8710,7 +8710,7 @@ packages:
       react: '>=15.0.0'
     dependencies:
       '@babel/runtime': 7.24.0
-      '@types/react': 18.2.77
+      '@types/react': 18.2.78
       invariant: 2.2.4
       react: 18.2.0
       react-lifecycles-compat: 3.0.4
