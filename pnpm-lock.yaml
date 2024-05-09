@@ -73,7 +73,7 @@ importers:
         version: 2.10.2(@types/react@18.3.1)(react-dom@18.3.1)(react@18.3.1)
       react-data-table-component:
         specifier: ^7.5.3
-        version: 7.6.2(react@18.3.1)(styled-components@6.1.10)
+        version: 7.6.2(react@18.3.1)(styled-components@6.1.11)
       react-dom:
         specifier: ^18.2.0
         version: 18.3.1(react@18.3.1)
@@ -82,7 +82,7 @@ importers:
         version: 7.51.4(react@18.3.1)
       styled-components:
         specifier: ^6.0.0
-        version: 6.1.10(react-dom@18.3.1)(react@18.3.1)
+        version: 6.1.11(react-dom@18.3.1)(react@18.3.1)
       typescript:
         specifier: ^5.0.4
         version: 5.4.5
@@ -7987,7 +7987,7 @@ packages:
       warning: 4.0.3
     dev: false
 
-  /react-data-table-component@7.6.2(react@18.3.1)(styled-components@6.1.10):
+  /react-data-table-component@7.6.2(react@18.3.1)(styled-components@6.1.11):
     resolution: {integrity: sha512-nHe7040fmtrJyQr/ieGrTfV0jBflYGK4sLokC6/AFOv3ThjmA9WzKz8Z8/2wMxzRqLU+Rn0CVFg+8+frKLepWQ==}
     peerDependencies:
       react: '>= 16.8.3'
@@ -7995,7 +7995,7 @@ packages:
     dependencies:
       deepmerge: 4.3.1
       react: 18.3.1
-      styled-components: 6.1.10(react-dom@18.3.1)(react@18.3.1)
+      styled-components: 6.1.11(react-dom@18.3.1)(react@18.3.1)
     dev: false
 
   /react-dom@18.3.1(react@18.3.1):
@@ -8492,8 +8492,8 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /styled-components@6.1.10(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-4K8IKcn7iOt76riGLjvBhRyNPTkUKTvmnwoRFBOtJLswVvzy2VsoE2KOrfl9FJLQUYbITLJY2wfIZ3tjbkA/Zw==}
+  /styled-components@6.1.11(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-Ui0jXPzbp1phYij90h12ksljKGqF8ncGx+pjrNPsSPhbUUjWT2tD1FwGo2LF6USCnbrsIhNngDfodhxbegfEOA==}
     engines: {node: '>= 16'}
     peerDependencies:
       react: '>= 16.8.0'
