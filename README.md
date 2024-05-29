@@ -1,4 +1,4 @@
-# [RMS] Remember me service
+# [RMS] Remember me service (DEPRECATED)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
