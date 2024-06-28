@@ -15,7 +15,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.5",
-    "@marigold/components": "^7.8.0",
+    "@marigold/components": "^8.0.0",
     "@marigold/eslint-config": "^0.4.15",
     "@marigold/jest-config": "^1.2.1",
     "@marigold/prettier-config": "^0.3.1",
